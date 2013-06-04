@@ -1,47 +1,54 @@
-# SnowPlow
+# Snowplow
 
-## Introduction
+<img src="https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/snowplow-logo-large.png"
+ alt="Snowplow logo" title="Snowplow" align="right" />
 
-SnowPlow is the world's most powerful web analytics platform. It does three things:
+Snowplow is an enterprise-strength marketing and product analytics platform. It does three things:
 
-* Identifies users, and tracks the way they engage with a website or web-app
-* Stores the associated data in a scalable “clickstream” data warehouse
-* Makes it possible to leverage a big data toolset (e.g. Hadoop, Pig, Hive) to analyse that data
+1. Identifies your users, and tracks the way they engage with your website or application
+2. Stores your users' behavioural data in a scalable "event data warehouse" you control
+3. Lets you leverage a big data toolset (e.g. Hive, Pig, Mahout) to analyse that behavioural data
 
-**To find out more, please check out the [SnowPlow website] [website] and [SnowPlow Wiki] [wiki].**
+**To find out more, please check out the [Snowplow website] [website] and the [Snowplow wiki] [wiki].**
 
-## SnowPlow technology 101
+## Snowplow technology 101
 
-The repository structure follows the conceptual architecture of SnowPlow, which consists of five loosely coupled stages:
+The repository structure follows the conceptual architecture of Snowplow, which consists of five loosely coupled stages:
 
 ![architecture] [architecture-image]
 
 To briefly explain these five sub-systems:
 
-* **Trackers** fire SnowPlow events. Currently we have a JavaScript tracker; iOS and Android trackers are on the roadmap
-* **Collectors** receive SnowPlow events from trackers. Currently we have a CloudFront-based collector and a node.js-based collector, called SnowCannon
-* **ETL (extract, transform and load)** cleans up the raw SnowPlow events, enriches them and puts them into storage. Currently we have a Hive-based ETL process
-* **Storage** is where the SnowPlow events live. Currently we store the SnowPlow events in a Hive-format flatfile structure on S3
-* **Analytics** are performed on the SnowPlow events. Currently we have a set of ad hoc analyses written in Hive 
+* **Trackers** fire Snowplow events. Currently we have a JavaScript tracker, a no-JavaScript (pixel) tracker and an Arduino tracker
+* **Collectors** receive Snowplow events from trackers. Currently we have a CloudFront-based collector and a Clojure-based collector
+* **Enrich** cleans up the raw Snowplow events, enriches them and puts them into storage. Currently we have a Hadoop-based enrichment processes
+* **Storage** is where the Snowplow events live. Currently we store the Snowplow events in a flatfile structure on S3, and in the Redshift and Infobright columnar databases
+* **Analytics** are performed on the Snowplow events. Currently we have a cookbook of ad hoc analyses that work with Hive, Redshift and Infobright 
 
-**For more information on the current SnowPlow architecture, please see the [Technical architecture] [architecture-doc]**.
+**For more information on the current Snowplow architecture, please see the [Technical architecture] [architecture-doc]**.
+
+## Find out more
+
+| Technical Docs                  | Setup Guide               | Roadmap                 | Contributing                      |
+|---------------------------------|---------------------------|-------------------------|-----------------------------------|
+| ![i1] [techdocs-image]          | ![i2] [setup-image]       | ![i3] [roadmap-image]   | ![i4] [contributing-image]        |
+| **[Technical Docs] [techdocs]** | **[Setup Guide] [setup]** | **[Roadmap] [roadmap]** | **[Contributing] [contributing]** |
 
 ## Contributing
 
-We're committed to a loosely-coupled architecture for SnowPlow and would love to get your contributions within each of the five sub-systems.
+We're committed to a loosely-coupled architecture for Snowplow and would love to get your contributions within each of the five sub-systems.
 
-If you would like help implementing a new tracker, trying a different ETL approach or loading SnowPlow events into an alternative database, **[get in touch] [contact]**!
+If you would like help implementing a new tracker, adding an additional enrichment or loading Snowplow events into an alternative database, check out our **[Contributing] [contributing]** page on the wiki!
 
 ## Questions or need help?
 
-Contact us at support@snowplowanalytics.com or join our [SnowPlow Google Group] [snowplow-user].
+Check out the **[Talk to us] [talk-to-us]** page on our wiki.
 
 ## Copyright and license
 
-SnowPlow is copyright 2012 SnowPlow Analytics Ltd. Significant portions of `snowplow.js`
-are copyright 2010 Anthon Pang.
+Snowplow is copyright 2012-2013 Snowplow Analytics Ltd.
 
-Licensed under the [Apache License, Version 2.0] [license] (the "License");
+Licensed under the **[Apache License, Version 2.0] [license]** (the "License");
 you may not use this software except in compliance with the License.
 
 Unless required by applicable law or agreed to in writing, software
@@ -50,10 +57,27 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+![Tracker](https://collector.snplow.com/i?&e=pv&page=Root%20README&aid=snowplowgithub&p=web&tv=no-js-0.1.0)
+
 [website]: http://snowplowanalytics.com
 [wiki]: https://github.com/snowplow/snowplow/wiki
-[architecture-image]: https://github.com/snowplow/snowplow/raw/master/architecture.png
+[architecture-image]: https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/technical-architecture.png
 [architecture-doc]: https://github.com/snowplow/snowplow/wiki/Technical-architecture
-[contact]: mailto:contribute@snowplowanalytics.com
+[talk-to-us]: https://github.com/snowplow/snowplow/wiki/Talk-to-us
+[contributing]: https://github.com/snowplow/snowplow/wiki/Contributing
 [license]: http://www.apache.org/licenses/LICENSE-2.0
-[snowplow-user]: https://groups.google.com/d/forum/snowplow-user
+[setup]: https://github.com/snowplow/snowplow/wiki/Setting-up-SnowPlow
+[tech-docs]: https://github.com/snowplow/snowplow/wiki/SnowPlow%20technical%20documentation
+[tracker-protocol]: https://github.com/snowplow/snowplow/wiki/snowplow-tracker-protocol
+[collector-logs]: https://github.com/snowplow/snowplow/wiki/Collector-logging-formats
+[data-structure]: https://github.com/snowplow/snowplow/wiki/canonical-event-model
+
+[techdocs-image]: https://d3i6fms1cm1j0i.cloudfront.net/github/images/techdocs.png
+[setup-image]: https://d3i6fms1cm1j0i.cloudfront.net/github/images/setup.png
+[roadmap-image]: https://d3i6fms1cm1j0i.cloudfront.net/github/images/roadmap.png
+[contributing-image]: https://d3i6fms1cm1j0i.cloudfront.net/github/images/contributing.png
+
+[techdocs]: https://github.com/snowplow/snowplow/wiki/SnowPlow-technical-documentation
+[setup]: https://github.com/snowplow/snowplow/wiki/Setting-up-SnowPlow
+[roadmap]: https://github.com/snowplow/snowplow/wiki/Product-roadmap
+[contributing]: https://github.com/snowplow/snowplow/wiki/Contributing
